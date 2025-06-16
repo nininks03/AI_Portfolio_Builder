@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Your Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            color: #2c3e50;
+        }
+
+        .wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            font-weight: 300;
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            letter-spacing: -1px;
+        }
+
+        .form__contact {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            overflow: hidden;
+            animation: slideUp 0.8s ease-out;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form__contact fieldset {
+            border: none;
+            padding: 3rem;
+            background: transparent;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .form-col {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .form-col-small {
+            flex: 0 0 150px;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: 100%;
+            border: 2px solid #e1e8ed;
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            font-size: 1rem;
+            background: white;
+            color: #2c3e50;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15), 0 4px 20px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        input[type="text"]::placeholder,
+        input[type="email"]::placeholder {
+            color: #a0aec0;
+            font-style: italic;
+        }
+
+        textarea {
+            width: 100%;
+            border: 2px solid #e1e8ed;
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            font-size: 1rem;
+            background: white;
+            color: #2c3e50;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            resize: vertical;
+            min-height: 120px;
+            font-family: inherit;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15), 0 4px 20px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        textarea::placeholder {
+            color: #a0aec0;
+            font-style: italic;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: inherit;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #5a67d8, #6b46c1);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .generate-btn {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            margin-top: 0.75rem;
+            padding: 0.6rem 1.2rem;
+            font-size: 0.85rem;
+        }
+
+        .generate-btn:hover {
+            background: linear-gradient(135deg, #38a169, #2f855a);
+            box-shadow: 0 6px 20px rgba(72, 187, 120, 0.4);
+        }
+
+        .button--xlarge {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 1.25rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 15px;
+            margin-top: 2rem;
+            width: 100%;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .button--xlarge:hover {
+            background: linear-gradient(135deg, #5a67d8, #6b46c1);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin: 2.5rem 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #667eea;
+            display: inline-block;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .education-card {
+            background: linear-gradient(135deg, #fff5f5, #fed7d7);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(237, 137, 137, 0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+                margin-bottom: 2rem;
+            }
+
+            .form__contact fieldset {
+                padding: 2rem 1.5rem;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .form-col,
+            .form-col-small {
+                flex: none;
+                min-width: auto;
+            }
+
+            .button--xlarge {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 1rem 0.5rem;
+            }
+
+            .form__contact fieldset {
+                padding: 1.5rem 1rem;
+            }
+
+            h1 {
+                font-size: 1.9rem;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+        }
+
+        svg {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <h1>Create Your Portfolio</h1>
+        
+        <form id="submit-form" class="form__contact" action="/create-portfolio" method="POST">
+            <fieldset>
+                <!-- Personal Information -->
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" name="name" id="name" placeholder="Enter your full name" tabindex="1" value="{{data.name}}" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="title">Professional Tag Line</label>
+                    <input type="text" name="title" id="title" placeholder="e.g., Full Stack Developer, UI/UX Designer" tabindex="2" value="{{data.title}}" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="profile_picture">Profile Picture URL</label>
+                    <input type="text" name="profile_picture" id="profile_picture" placeholder="https://example.com/your-photo.jpg" tabindex="3" value="{{data.profile_picture}}" required />
+                </div>
+
+                <!-- Education Section -->
+                <h3 class="section-title">Education</h3>
+                
+                <div class="education-card">
+                    <div class="form-group">
+                        <label for="program_name_1">Program Name (Primary)</label>
+                        <input type="text" name="program_name_1" id="program_name_1" placeholder="e.g., Bachelor of Computer Science" tabindex="4" value="{{data.program_name_1}}" required />
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-col">
+                            <label for="program_1_university">Institution Name</label>
+                            <input type="text" name="program_1_university" id="program_1_university" placeholder="University/College name" tabindex="5" value="{{data.program_1_university}}" required />
+                        </div>
+                        <div class="form-col-small">
+                            <label for="program1_year">Year</label>
+                            <input type="text" name="program1_year" id="program1_year" placeholder="2020-2024" tabindex="6" value="{{data.program1_year}}" required />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="program1_skills">Skills Learned</label>
+                        <input type="text" name="program1_skills" id="program1_skills" placeholder="Programming, Data Structures, Algorithms" tabindex="7" value="{{data.program1_skills}}" required />
+                    </div>
+                </div>
+
+                <div class="education-card">
+                    <div class="form-group">
+                        <label for="program_name_2">Program Name (Secondary)</label>
+                        <input type="text" name="program_name_2" id="program_name_2" placeholder="e.g., Diploma in Web Development" tabindex="8" value="{{data.program_name_2}}" required />
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-col">
+                            <label for="program_2_university">Institution Name</label>
+                            <input type="text" name="program_2_university" id="program_2_university" placeholder="College/Institute name" tabindex="9" value="{{data.program_2_university}}" required />
+                        </div>
+                        <div class="form-col-small">
+                            <label for="program2_year">Year</label>
+                            <input type="text" name="program2_year" id="program2_year" placeholder="2018-2020" tabindex="10" value="{{data.program2_year}}" required />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="program2_skills">Skills Learned</label>
+                        <input type="text" name="program2_skills" id="program2_skills" placeholder="HTML, CSS, JavaScript, React" tabindex="11" value="{{data.program2_skills}}" required />
+                    </div>
+                </div>
+
+                <!-- Projects Section -->
+                <h3 class="section-title">Projects</h3>
+
+                <div class="project-card">
+                    <div class="form-group">
+                        <label for="project1_name">Project 1 Name</label>
+                        <input type="text" name="project1_name" id="project1_name" placeholder="Project title" tabindex="12" value="{{data.project1_name}}" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="project1_description">Project Description</label>
+                        <input type="text" name="project1_description" id="project1_description" placeholder="Brief description of the project" tabindex="13" value="{{data.project1_description}}" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="project1_skills">Technologies Used</label>
+                        <input type="text" name="project1_skills" id="project1_skills" placeholder="React, Node.js, MongoDB" tabindex="14" value="{{data.project1_skills}}" required />
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="form-group">
+                        <label for="project2_name">Project 2 Name</label>
+                        <input type="text" name="project2_name" id="project2_name" placeholder="Project title" tabindex="15" value="{{data.project2_name}}" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="project2_description">Project Description</label>
+                        <input type="text" name="project2_description" id="project2_description" placeholder="Brief description of the project" tabindex="16" value="{{data.project2_description}}" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="project2_skills">Technologies Used</label>
+                        <input type="text" name="project2_skills" id="project2_skills" placeholder="Python, Django, PostgreSQL" tabindex="17" value="{{data.project2_skills}}" required />
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="form-group">
+                        <label for="project3_name">Project 3 Name</label>
+                        <input type="text" name="project3_name" id="project3_name" placeholder="Project title" tabindex="18" value="{{data.project3_name}}" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="project3_description">Project Description</label>
+                        <input type="text" name="project3_description" id="project3_description" placeholder="Brief description of the project" tabindex="19" value="{{data.project3_description}}" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="project3_skills">Technologies Used</label>
+                        <input type="text" name="project3_skills" id="project3_skills" placeholder="Vue.js, Firebase, CSS3" tabindex="20" value="{{data.project3_skills}}" required />
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <h3 class="section-title">Contact Information</h3>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" name="email" id="email" placeholder="your.email@example.com" tabindex="21" value="{{data.email}}" required />
+                </div>
+
+                <div class="form-row">
+                    <div class="form-col">
+                        <label for="location">Location</label>
+                        <input type="text" name="location" id="location" placeholder="City, Country" tabindex="22" value="{{data.location}}" required />
+                    </div>
+                    <div class="form-col">
+                        <label for="phone">Phone Number</label>
+                        <input type="text" name="phone" id="phone" placeholder="+1 (555) 123-4567" tabindex="23" value="{{data.phone}}" required />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="about_me_id">About Me</label>
+                    <textarea name="about_me" id="about_me_id" placeholder="Tell us about yourself, your interests, and what drives you..." tabindex="24" required>{{data.about_me}}</textarea>
+                    <button type="button" class="generate-btn" onclick="generateAboutMe()">Generate About Me</button>
+                </div>
+
+                <button type="submit" class="button button--xlarge" tabindex="25">Create Portfolio &#187;</button>
+            </fieldset>
+        </form>
+    </div>
+
+    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
+        <defs>
+            <filter id="blur0">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="0 0" />
+            </filter>
+            <filter id="blur1">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="0 5" />
+            </filter>
+            <filter id="blur2">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="0 10" />
+            </filter>
+            <filter id="blur3">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="0 15" />
+            </filter>
+            <filter id="blur4">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="0 20" />
+            </filter>
+        </defs>
+    </svg>
+
+    <script>
+        function generateAboutMe(){
+            var about_me_input = document.getElementById('about_me_id')
+            about_me_input.value = "generating..."
+            generateButton = document.getElementById('submit-form').submit()
+        }
+    </script>
+</body>
+</html>
